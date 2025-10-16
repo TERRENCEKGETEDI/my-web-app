@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-function Home() {
+// Accept 'clearToken' as a prop
+function Home({ clearToken }) {
     const navigate = useNavigate();
 
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (!token) {
-            navigate('/login'); // If no token, redirect to login
-        }
-    }, [navigate]);
-
     const handleLogout = () => {
-        localStorage.removeItem('token');
+        clearToken(); // Use the function from props to clear the token
         navigate('/login');
     };
 
